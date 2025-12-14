@@ -2,8 +2,6 @@ data/raw/*.csv
 data/processed/*.csv
 data/mocks/*.csv
 
-notebooks/*.ipynb
-
 venv/
 __pycache__/
 *.DS_Store

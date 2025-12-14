@@ -34,8 +34,8 @@ Optamos por este dataset para concentrar o esforço do projeto na **comparação
 
 ## Divisão de Papéis e Responsabilidades
 
-O projeto adota uma estrutura de trabalho **modular e paralela**, permitindo que as atividades avancem simultaneamente com **baixo acoplamento** entre as equipes.  
-O **Engenheiro de Dados** fornece a base comum para os **Especialistas em Modelagem**, reduzindo gargalos de integração.
+O projeto adota uma estrutura de trabalho **modular e paralela**, permitindo que as atividades avancem simultaneamente com **baixo acoplamento** entre as partes.  
+A **Engenharia de Dados** fornece a base comum para a **Modelagem**, reduzindo gargalos de integração.
 
 ---
 
@@ -47,17 +47,6 @@ O **Engenheiro de Dados** fornece a base comum para os **Especialistas em Modela
 | **Esp. em Deep Learning** | *Integrante 2* | Autoencoder (Reconstrução) | • Implementação do `autoencoder.py` (Keras/PyTorch)<br>• Ajuste do gargalo (*bottleneck*) e *learning rate*<br>• Geração do `anomaly_score` via **erro de reconstrução** |
 | **Esp. em Densidade** | *Integrante 3* | DBSCAN (Geometria / Ruído) | • Aplicação de PCA para otimizar o modelo<br>• Implementação do `dbscan.py`<br>• Ajuste de `epsilon` e `min_samples`<br>• Uso da classe `-1` (ruído) como anomalia |
 | **Esp. Probabilístico** | *Integrante 4* | GMM (Distribuição) | • Implementação do `gmm.py`<br>• Ajuste do número de componentes e tipo de covariância<br>• Cálculo do `anomaly_score` via **probabilidade invertida** \\(1 − P(x)\\) |
-
----
-
-### Contrato de Integração
-
-Para garantir o paralelismo e evitar conflitos:
-
-- Todos os modelos **devem consumir os dados** exclusivamente da pasta `data/processed/`.
-- Todas as predições **devem ser salvas** na pasta `outputs/`, seguindo rigorosamente o formato acordado.
-
-> O **Engenheiro de Dados** é responsável por garantir que as colunas `anomaly_score` e `is_anomaly` sejam corretamente interpretadas e utilizadas no script final de avaliação.
 
 ---
 

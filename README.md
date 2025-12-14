@@ -50,40 +50,41 @@ A **Engenharia de Dados** fornece a base comum para a **Modelagem**, reduzindo g
 
 ## Contrato de Interface de Dados
 
-Para garantir a paralelização do trabalho, os formatos de entrada e saída são pré-definidos.
+O **Contrato de Interface de Dados** define formalmente os **formatos de entrada e saída** utilizados no projeto.  
+Seu objetivo é permitir **desenvolvimento paralelo**, garantindo que o **Engenheiro de Dados & Avaliação (Integrante 1)** consiga integrar e comparar os resultados dos três modelos **sem incompatibilidades**.
 
-### Entrada dos modelos
+### Entrada dos Modelos  
+**Responsabilidade exclusiva: Integrante 1 (Engenharia de Dados & Avaliação)**
 
-Todos os modelos devem ler os dados da pasta `data/processed/`:
+O Integrante 1 é o **único responsável** por gerar, validar e versionar os arquivos abaixo na pasta `data/processed/`.  
+Todos os modelos **devem consumir exatamente esses arquivos**, sem exceções.
 
-* **X_train_processed.csv**
-  Features numéricas normalizadas, sem coluna alvo (`target`) e sem ID.
+| Arquivo | Conteúdo Garantido | Responsável | Justificativa |
+|-------|------------------|------------|---------------|
+| **`X_train_processed.csv`** | Features numéricas **normalizadas**, sem ID e sem `target` | Integrante 1 | Base de treino limpa para aprendizado **não supervisionado**, focada na estrutura dos dados normais |
+| **`X_test_processed.csv`** | Features de teste, sem ID e sem `target` | Integrante 1 | Garante avaliação justa, com os três modelos testados no **mesmo conjunto de dados** |
+| **`y_test.csv`** | Coluna única binária (`0 = Normal`, `1 = Anomalia`) | Integrante 1 | Gabarito oficial (`y_true`) para cálculo de métricas |
+| **`ids_test.csv`** | Coluna única com IDs das transações | Integrante 1 | Permite o alinhamento entre predições e gabarito, assegurando a integridade dos resultados |
 
-* **X_test_processed.csv**
-  Mesmo formato do conjunto de treino.
+---
 
-* **y_test.csv**
-  Gabarito oficial para validação (coluna única binária: `0 = Normal`, `1 = Anomalia`).
+### Saída dos Modelos  
+**Responsabilidade: Integrantes 2, 3 e 4 (Modelagem)**
 
-* **ids_test.csv**
-  IDs correspondentes às linhas de teste (para cruzamento de resultados).
+Cada especialista em modelagem deve salvar suas predições na pasta `outputs/`, **obedecendo rigorosamente** ao formato definido neste contrato.
 
-### Saída dos modelos
+- **Nome do arquivo:** [nome_modelo]_predictions.csv
+Exemplo: `autoencoder_predictions.csv`
 
-Todo modelo deve salvar suas predições na pasta `outputs/`, seguindo **exatamente** este formato:
+### Estrutura Obrigatória do CSV
 
-* **Nome do arquivo:** `[nome_modelo]_predictions.csv`
-  Exemplo: `autoencoder_predictions.csv`
+| Coluna | Tipo | Finalidade |
+|------|------|------------|
+| **`id`** | int / str | **Chave de cruzamento** usada para alinhar a predição ao `y_test.csv` |
+| **`anomaly_score`** | float | **Score contínuo** utilizado para cálculo da **Curva ROC** e do **AUC-ROC** (capacidade máxima do modelo) |
+| **`is_anomaly`** | int (0 ou 1) | Classificação binária após aplicação do *threshold*, usada para métricas como **F1-score** e **Recall** |
 
-#### Estrutura do CSV
-
-| Coluna          | Tipo      | Descrição                                               |
-| --------------- | --------- | ------------------------------------------------------- |
-| `id`            | int / str | Identificador da transação (deve coincidir com o input) |
-| `anomaly_score` | float     | Grau de anomalia (quanto maior, mais anômalo)           |
-| `is_anomaly`    | int       | Classificação binária baseada no *threshold* (0 ou 1)   |
-
-#### Exemplo de CSV de Saída
+### 📌 Exemplo de CSV de Saída (Contrato de Interface)
 
 ```csv
 id,anomaly_score,is_anomaly

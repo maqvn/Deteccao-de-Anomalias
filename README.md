@@ -27,6 +27,7 @@ A comparação é realizada sob um mesmo conjunto de dados, protocolo experiment
 ## Dataset Utilizado
 
 Será utilizado o dataset **Credit Card Fraud Detection**, disponibilizado publicamente no Kaggle.
+https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
 ### Características Principais
 

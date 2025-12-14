@@ -37,8 +37,6 @@ Optamos por este dataset para concentrar o esforço do projeto na **comparação
 O projeto adota uma estrutura de trabalho **modular e paralela**, permitindo que as atividades avancem simultaneamente com **baixo acoplamento** entre as partes.  
 A **Engenharia de Dados** fornece a base comum para a **Modelagem**, reduzindo gargalos de integração.
 
----
-
 ### Papéis do Projeto
 
 | Papel | Integrante | Foco | Responsabilidades |

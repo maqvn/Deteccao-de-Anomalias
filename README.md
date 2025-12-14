@@ -1,10 +1,22 @@
-# 🕵️ Detecção de Anomalias (Projeto AMCD)
+# Detecção de Anomalias (Projeto AMCD)
 
-Este repositório contém o código fonte e os experimentos para o projeto da disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**.
+Projeto desenvolvido para a disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**, com foco na comparação de diferentes abordagens para **detecção de anomalias/fraudes** em dados altamnte desbalanceados.
 
-**Objetivo:** Implementar e comparar três abordagens distintas (**Deep Learning**, **Densidade** e **Probabilística**) para a detecção de anomalias/fraudes em um conjunto de dados desbalanceado.
+---
 
-## 📌 Modelos Implementados
+## Objetivo do Projeto
+
+Implementar, avaliar e comparar três paradigmas distintos de detecção de anomalias:
+
+* **Deep Learning** (Reconstrução)
+* **Modelos Baseados em Densidade**
+* **Modelos Probabilísticos**
+
+A comparação é realizada sob um mesmo conjunto de dados, protocolo experimental e métricas, garantindo uma análise justa e reprodutível.
+
+---
+
+## Modelos Implementados
 
 1. **Autoencoder** — Abordagem de Reconstrução
 2. **DBSCAN** — Abordagem de Densidade
@@ -12,90 +24,62 @@ Este repositório contém o código fonte e os experimentos para o projeto da di
 
 ---
 
-## 📂 Estrutura do Repositório
+## Dataset Utilizado
 
-Mantemos uma organização estrita para separar dados brutos, código de exploração (notebooks) e código de produção (`src`).
+Será utilizado o dataset **Credit Card Fraud Detection**, disponibilizado publicamente no Kaggle.
 
-```text
-projeto-anomalia/
-├── data/
-│   ├── raw/                  # Dados originais imutáveis (NÃO commitar arquivos grandes)
-│   ├── processed/            # Dados limpos e normalizados (gerados pelo script de limpeza)
-│   └── mocks/                # Dados falsos para testes de integração
-├── notebooks/                # Área de experimentação e rascunho
-│   ├── 01_eda_analise.ipynb
-│   ├── 02_proto_autoencoder.ipynb
-│   ├── 02_proto_dbscan.ipynb
-│   └── 02_proto_gmm.ipynb
-├── src/                      # Código final modularizado
-│   ├── preprocessing.py      # Funções de limpeza e split
-│   ├── evaluation.py         # Funções para curvas ROC e métricas
-│   └── models/               # Scripts finais dos modelos
-│       ├── autoencoder.py
-│       ├── dbscan.py
-│       └── gmm.py
-├── outputs/                  # Predições salvas pelos modelos (CSV)
-├── requirements.txt          # Dependências do projeto
-└── README.md                 # Este arquivo
-```
+### Características Principais
+
+* **Conteúdo:** Transações de cartões de crédito de clientes europeus (setembro de 2013).
+* **Volume:** 284.807 transações.
+* **Desbalanceamento:** Apenas 492 fraudes (0,172%), caracterizando um cenário altamente desbalanceado.
+* **Privacidade:** As features `V1`, `V2`, ..., `V28` resultam de uma transformação por **PCA (Principal Component Analysis)**, aplicada para anonimização.
+* **Features Não Transformadas:**
+
+  * `Time`: segundos desde a primeira transação
+  * `Amount`: valor da transação
+
+### Justificativa da Escolha
+
+A escolha deste dataset permite concentrar o esforço do projeto na **análise algorítmica** e na **sensibilidade dos modelos**, minimizando problemas oriundos de dados brutos não estruturados.
+
+Como as principais features já passaram por PCA, elas apresentam propriedades estatísticas desejáveis — como descorrelação — que favorecem a convergência e estabilidade de modelos como **GMM** e **Autoencoders**, possibilitando uma comparação mais precisa entre abordagens.
 
 ---
 
-## 🌿 Branches
+## Organização do Trabalho
 
-* **main**: Produção. Só aceita código via *Pull Request* (PR).
-* **feature/preprocessamento**: Limpeza, EDA e split dos dados.
-* **feature/model-autoencoder**: Desenvolvimento da Rede Neural.
-* **feature/model-dbscan**: Desenvolvimento do DBSCAN e PCA.
-* **feature/model-gmm**: Desenvolvimento do GMM e análise de distribuição.
+O projeto adota uma estrutura **modular e paralela**, permitindo que diferentes partes avancem simultaneamente com **baixo acoplamento**. Um contrato claro de dados e responsabilidades reduz conflitos de integração.
 
-### 🔄 Fluxo de Trabalho
+### Divisão de Papéis e Responsabilidades
 
-1. Crie sua branch a partir da `main`.
-2. Desenvolva e teste no seu notebook.
-3. Exporte o código limpo para a pasta `src/` **ou** garanta que o notebook final rode de ponta a ponta.
-4. Abra um *Pull Request* para a `main` ao finalizar.
+| Papel                         | Integrante     | Foco                      | Responsabilidades                                                                                                                                                                                                  |
+| ----------------------------- | -------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Eng. de Dados & Avaliação** | *Integrante 1* | Infraestrutura e Métricas | • Limpeza, normalização e split dos dados<br>• Geração de arquivos em `data/processed/`<br>• Implementação do `evaluation.py`<br>• Cálculo de métricas (AUC-ROC, F1, Recall)<br>• Geração de gráficos comparativos |
+| **Esp. em Deep Learning**     | *Integrante 2* | Autoencoder               | • Implementação do `autoencoder.py` (Keras/PyTorch)<br>• Ajuste do gargalo (*bottleneck*) e *learning rate*<br>• Geração do `anomaly_score` via erro de reconstrução                                               |
+| **Esp. em Densidade**         | *Integrante 3* | DBSCAN                    | • Aplicação de PCA para otimização<br>• Implementação do `dbscan.py`<br>• Ajuste de `epsilon` e `min_samples`<br>• Uso da classe `-1` como anomalia                                                                |
+| **Esp. Probabilístico**       | *Integrante 4* | GMM                       | • Implementação do `gmm.py`<br>• Ajuste do número de componentes e covariância<br>• Cálculo do `anomaly_score` via probabilidade invertida (1 − P(x))                                                              |
 
 ---
 
-## 🤝 Contrato de Interface de Dados
+## Contrato de Interface de Dados
 
-Para garantir que o trabalho flua em paralelo, os formatos de entrada e saída são rigidamente definidos.
+### Entrada dos Modelos (`data/processed/`)
 
-### 1️⃣ Entrada (O que os modelos recebem)
+* `X_train_processed.csv` — Features normalizadas (sem target e sem ID)
+* `X_test_processed.csv` — Mesmo formato do treino
+* `y_test.csv` — Gabarito (0 = Normal, 1 = Anomalia)
+* `ids_test.csv` — Identificadores das amostras de teste
 
-Todos os modelos devem ler os dados da pasta `data/processed/`:
+### Saída dos Modelos (`outputs/`)
 
-* **X_train_processed.csv**
-  Features numéricas normalizadas, sem coluna alvo (`target`) e sem ID.
+* **Arquivo:** `[nome_modelo]_predictions.csv`
 
-* **X_test_processed.csv**
-  Mesmo formato do conjunto de treino.
-
-* **y_test.csv**
-  Gabarito oficial para validação (coluna única binária: `0 = Normal`, `1 = Anomalia`).
-
-* **ids_test.csv**
-  IDs correspondentes às linhas de teste (para cruzamento de resultados).
-
----
-
-### 2️⃣ Saída (O que os modelos entregam)
-
-Todo modelo deve salvar suas predições na pasta `outputs/`, seguindo **exatamente** este formato:
-
-* **Nome do arquivo:** `[nome_modelo]_predictions.csv`
-  Exemplo: `autoencoder_predictions.csv`
-
-#### 📄 Estrutura do CSV
-
-| Coluna          | Tipo      | Descrição                                               |
-| --------------- | --------- | ------------------------------------------------------- |
-| `id`            | int / str | Identificador da transação (deve coincidir com o input) |
-| `anomaly_score` | float     | Grau de anomalia (quanto maior, mais anômalo)           |
-| `is_anomaly`    | int       | Classificação binária baseada no *threshold* (0 ou 1)   |
-
-#### 📌 Exemplo de CSV de Saída
+| Coluna          | Tipo      | Descrição                  |
+| --------------- | --------- | -------------------------- |
+| `id`            | int / str | Identificador da transação |
+| `anomaly_score` | float     | Grau de anomalia           |
+| `is_anomaly`    | int       | Classificação binária      |
 
 ```csv
 id,anomaly_score,is_anomaly
@@ -106,17 +90,65 @@ id,anomaly_score,is_anomaly
 
 ---
 
-## 🚀 Como Executar (Ambiente)
+## Estrutura do Repositório
+
+A organização do repositório separa claramente **dados**, **experimentação** e **código de produção**, facilitando manutenção e avaliação.
+
+```text
+projeto-anomalia/
+├── data/
+│   ├── raw/                  # Dados originais imutáveis (NÃO commitar arquivos grandes)
+│   ├── processed/            # Dados limpos e normalizados
+│   └── mocks/                # Dados sintéticos para testes
+├── notebooks/                # Exploração e prototipagem
+│   ├── 01_eda_analise.ipynb
+│   ├── 02_proto_autoencoder.ipynb
+│   ├── 02_proto_dbscan.ipynb
+│   └── 02_proto_gmm.ipynb
+├── src/                      # Código final
+│   ├── preprocessing.py
+│   ├── evaluation.py
+│   └── models/
+│       ├── autoencoder.py
+│       ├── dbscan.py
+│       └── gmm.py
+├── outputs/                  # Predições dos modelos
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Branches e Fluxo de Trabalho
+
+### Branches
+
+* **main**: Produção (atualizações apenas via Pull Request)
+* **preprocessing**: Limpeza, EDA e split
+* **model-autoencoder**: Desenvolvimento do Autoencoder
+* **model-dbscan**: Desenvolvimento do DBSCAN
+* **model-gmm**: Desenvolvimento do GMM
+
+### Fluxo de Trabalho
+
+1. Criar branch a partir da `main`.
+2. Desenvolver e testar no notebook.
+3. Exportar o código final para `src/`.
+4. Abrir Pull Request para a `main`.
+
+---
+
+## Execução do Ambiente
 
 Para garantir compatibilidade, todos devem usar as mesmas versões das bibliotecas.
 
-### 1️⃣ Clone o repositório
+### Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/projeto-anomalia.git
+git clone https://github.com/maqvn/Deteccao-de-Anomalias.git
 ```
 
-### 2️⃣ Crie um ambiente virtual (opcional, mas recomendado)
+### Crie um ambiente virtual (opcional, mas recomendado)
 
 ```bash
 python -m venv venv
@@ -124,7 +156,7 @@ source venv/bin/activate  # Linux / Mac
 venv\Scripts\activate     # Windows
 ```
 
-### 3️⃣ Instale as dependências
+### Instale as dependências
 
 ```bash
 pip install -r requirements.txt
@@ -132,9 +164,10 @@ pip install -r requirements.txt
 
 ---
 
-## 🧪 Desenvolvimento com Mocks
+## Desenvolvimento com Mocks
 
-Enquanto os dados reais não estiverem prontos (limpeza em andamento), utilize os arquivos da pasta `data/mocks/`.
+Enquanto os dados reais não estiverem prontos:
 
-* Possuem a **mesma estrutura de colunas e tipos de dados** dos arquivos reais.
-* Seu código deve funcionar alterando apenas o caminho de leitura de `data/processed/` para `data/mocks/`.
+* Utilize `data/mocks/`.
+* Os arquivos possuem **mesma estrutura e tipos** dos dados reais.
+* O código deve funcionar alterando apenas o caminho de leitura.

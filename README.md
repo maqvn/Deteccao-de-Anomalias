@@ -97,7 +97,7 @@ A organização do repositório separa claramente **dados**, **experimentação*
 ```text
 projeto-anomalia/
 ├── data/
-│   ├── raw/                  # Dados originais imutáveis (NÃO commitar arquivos grandes)
+│   ├── raw/                  # Dados originais imutáveis
 │   ├── processed/            # Dados limpos e normalizados
 │   └── mocks/                # Dados sintéticos para testes
 ├── notebooks/                # Exploração e prototipagem

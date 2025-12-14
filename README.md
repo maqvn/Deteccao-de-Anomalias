@@ -31,6 +31,9 @@ projeto-anomalia/
 │   ├── preprocessing.py      # Funções de limpeza e split
 │   ├── evaluation.py         # Funções para curvas ROC e métricas
 │   └── models/               # Scripts finais dos modelos
+│       ├── autoencoder.py
+│       ├── dbscan.py
+│       └── gmm.py
 ├── outputs/                  # Predições salvas pelos modelos (CSV)
 ├── requirements.txt          # Dependências do projeto
 └── README.md                 # Este arquivo

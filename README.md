@@ -1,6 +1,6 @@
 # Detecção de Anomalias (Projeto AMCD)
 
-Projeto desenvolvido para a disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**, com foco na comparação sistemática de diferentes abordagens para **detecção de anomalias/fraudes** em dados altamente desbalanceados.
+Projeto desenvolvido para a disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**, com foco na comparação de diferentes abordagens para **detecção de anomalias/fraudes** em dados altamnte desbalanceados.
 
 ---
 
@@ -49,7 +49,7 @@ Como as principais features já passaram por PCA, elas apresentam propriedades e
 
 ## Organização do Trabalho
 
-O projeto adota uma estrutura **modular e paralela**, permitindo que diferentes frentes avancem simultaneamente com **baixo acoplamento**. Um contrato claro de dados e responsabilidades reduz conflitos de integração.
+O projeto adota uma estrutura **modular e paralela**, permitindo que diferentes partes avancem simultaneamente com **baixo acoplamento**. Um contrato claro de dados e responsabilidades reduz conflitos de integração.
 
 ### Divisão de Papéis e Responsabilidades
 
@@ -62,7 +62,7 @@ O projeto adota uma estrutura **modular e paralela**, permitindo que diferentes 
 
 ---
 
-## 🔌 Contrato de Interface de Dados
+## Contrato de Interface de Dados
 
 ### Entrada dos Modelos (`data/processed/`)
 

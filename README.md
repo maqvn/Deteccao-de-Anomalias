@@ -14,7 +14,7 @@ Projeto da disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**.
 
 ---
 
-## Sobre o Dataset
+## Dataset
 
 Utilizaremos o dataset **Credit Card Fraud Detection**, disponível no Kaggle.
 

@@ -1,6 +1,6 @@
-data/raw/
-data/processed/
-data/mocks/
+data/raw/*
+data/processed/*
+data/mocks/*
 
 notebooks/*.ipynb
 

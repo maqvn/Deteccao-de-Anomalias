@@ -4,6 +4,8 @@ Projeto da disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**.
 
 **Objetivo:** Implementar e comparar três abordagens distintas (**Deep Learning**, **Densidade** e **Probabilística**) para a detecção de anomalias/fraudes em um conjunto de dados desbalanceado.
 
+---
+
 ## Modelos Implementados
 
 1. **Autoencoder** — Abordagem de Reconstrução
@@ -48,7 +50,7 @@ O **Engenheiro de Dados** fornece a base comum para os **Especialistas em Modela
 
 ---
 
-### 🎯 Contrato de Integração
+### Contrato de Integração
 
 Para garantir o paralelismo e evitar conflitos:
 
@@ -56,6 +58,52 @@ Para garantir o paralelismo e evitar conflitos:
 - Todas as predições **devem ser salvas** na pasta `outputs/`, seguindo rigorosamente o formato acordado.
 
 > O **Engenheiro de Dados** é responsável por garantir que as colunas `anomaly_score` e `is_anomaly` sejam corretamente interpretadas e utilizadas no script final de avaliação.
+
+---
+
+## Contrato de Interface de Dados
+
+Para garantir a paralelização do trabalho, os formatos de entrada e saída são pré-definidos.
+
+### Entrada dos modelos
+
+Todos os modelos devem ler os dados da pasta `data/processed/`:
+
+* **X_train_processed.csv**
+  Features numéricas normalizadas, sem coluna alvo (`target`) e sem ID.
+
+* **X_test_processed.csv**
+  Mesmo formato do conjunto de treino.
+
+* **y_test.csv**
+  Gabarito oficial para validação (coluna única binária: `0 = Normal`, `1 = Anomalia`).
+
+* **ids_test.csv**
+  IDs correspondentes às linhas de teste (para cruzamento de resultados).
+
+### Saída dos modelos
+
+Todo modelo deve salvar suas predições na pasta `outputs/`, seguindo **exatamente** este formato:
+
+* **Nome do arquivo:** `[nome_modelo]_predictions.csv`
+  Exemplo: `autoencoder_predictions.csv`
+
+#### Estrutura do CSV
+
+| Coluna          | Tipo      | Descrição                                               |
+| --------------- | --------- | ------------------------------------------------------- |
+| `id`            | int / str | Identificador da transação (deve coincidir com o input) |
+| `anomaly_score` | float     | Grau de anomalia (quanto maior, mais anômalo)           |
+| `is_anomaly`    | int       | Classificação binária baseada no *threshold* (0 ou 1)   |
+
+#### Exemplo de CSV de Saída
+
+```csv
+id,anomaly_score,is_anomaly
+1024,0.954,1
+1025,0.021,0
+1026,0.110,0
+```
 
 ---
 
@@ -102,52 +150,6 @@ projeto-anomalia/
 2. Desenvolva e teste no seu notebook.
 3. Exporte o código limpo para a pasta `src/`.
 4. Abra um *Pull Request* para a `main` ao finalizar.
-
----
-
-## Contrato de Interface de Dados
-
-Para garantir a paralelização do trabalho, os formatos de entrada e saída são pré-definidos.
-
-### Entrada dos modelos
-
-Todos os modelos devem ler os dados da pasta `data/processed/`:
-
-* **X_train_processed.csv**
-  Features numéricas normalizadas, sem coluna alvo (`target`) e sem ID.
-
-* **X_test_processed.csv**
-  Mesmo formato do conjunto de treino.
-
-* **y_test.csv**
-  Gabarito oficial para validação (coluna única binária: `0 = Normal`, `1 = Anomalia`).
-
-* **ids_test.csv**
-  IDs correspondentes às linhas de teste (para cruzamento de resultados).
-
-### Saída dos modelos
-
-Todo modelo deve salvar suas predições na pasta `outputs/`, seguindo **exatamente** este formato:
-
-* **Nome do arquivo:** `[nome_modelo]_predictions.csv`
-  Exemplo: `autoencoder_predictions.csv`
-
-#### Estrutura do CSV
-
-| Coluna          | Tipo      | Descrição                                               |
-| --------------- | --------- | ------------------------------------------------------- |
-| `id`            | int / str | Identificador da transação (deve coincidir com o input) |
-| `anomaly_score` | float     | Grau de anomalia (quanto maior, mais anômalo)           |
-| `is_anomaly`    | int       | Classificação binária baseada no *threshold* (0 ou 1)   |
-
-#### 📌 Exemplo de CSV de Saída
-
-```csv
-id,anomaly_score,is_anomaly
-1024,0.954,1
-1025,0.021,0
-1026,0.110,0
-```
 
 ---
 

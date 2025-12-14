@@ -138,13 +138,27 @@ projeto-anomalia/
 
 ---
 
-## Execução do Projeto
+## Execução do Ambiente
+
+Para garantir compatibilidade, todos devem usar as mesmas versões das bibliotecas.
+
+### Clone o repositório
 
 ```bash
 git clone https://github.com/maqvn/Deteccao-de-Anomalias.git
+```
+
+### Crie um ambiente virtual (opcional, mas recomendado)
+
+```bash
 python -m venv venv
 source venv/bin/activate  # Linux / Mac
 venv\Scripts\activate     # Windows
+```
+
+### Instale as dependências
+
+```bash
 pip install -r requirements.txt
 ```
 
@@ -157,3 +171,4 @@ Enquanto os dados reais não estiverem prontos:
 * Utilize `data/mocks/`.
 * Os arquivos possuem **mesma estrutura e tipos** dos dados reais.
 * O código deve funcionar alterando apenas o caminho de leitura.
+

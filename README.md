@@ -27,7 +27,6 @@ A comparação é realizada sob um mesmo conjunto de dados, protocolo experiment
 ## Dataset Utilizado
 
 Será utilizado o dataset **Credit Card Fraud Detection**, disponibilizado publicamente no Kaggle.
-https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
 ### Características Principais
 
@@ -45,6 +44,18 @@ https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 A escolha deste dataset permite concentrar o esforço do projeto na **análise algorítmica** e na **sensibilidade dos modelos**, minimizando problemas oriundos de dados brutos não estruturados.
 
 Como as principais features já passaram por PCA, elas apresentam propriedades estatísticas desejáveis — como descorrelação — que favorecem a convergência e estabilidade de modelos como **GMM** e **Autoencoders**, possibilitando uma comparação mais precisa entre abordagens.
+
+### Instalação do Dataset (Dados Reais)
+
+Devido ao tamanho (~150MB) e às boas práticas de versionamento, o dataset original **não está incluído no repositório**.
+
+1.  **Download:** Acesse a página oficial no Kaggle: [Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud).
+2.  **Arquivo:** Baixe e extraia o arquivo `creditcard.csv`.
+3.  **Localização:** Salve o arquivo exatamente no seguinte caminho:
+    ```text
+    data/raw/creditcard.csv
+    ```
+    > **Nota:** O arquivo `.gitignore` deste projeto já está configurado para ignorar qualquer CSV na pasta `data/raw/`, garantindo que dados sensíveis ou pesados não sejam enviados ao GitHub.
 
 ---
 
@@ -168,7 +179,7 @@ pip install -r requirements.txt
 ## Desenvolvimento com Mocks
 
 Enquanto os dados reais não estiverem prontos:
-
-* Utilize `data/mocks/`.
+* Rode o arquivo **src/generate_mocks.py**
+* Utilize o conjunto de dados resultante em `data/mocks/`.
 * Os arquivos possuem **mesma estrutura e tipos** dos dados reais.
 * O código deve funcionar alterando apenas o caminho de leitura.

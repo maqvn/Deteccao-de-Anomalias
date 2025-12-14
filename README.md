@@ -124,10 +124,10 @@ projeto-anomalia/
 ### Branches
 
 * **main**: Produção (atualizações apenas via Pull Request)
-* **preprocessing**: Limpeza, EDA e split
-* **model-autoencoder**: Desenvolvimento do Autoencoder
-* **model-dbscan**: Desenvolvimento do DBSCAN
-* **model-gmm**: Desenvolvimento do GMM
+* **feature/preprocessing**: Limpeza, EDA e split
+* **feature/model-autoencoder**: Desenvolvimento do Autoencoder
+* **feature/model-dbscan**: Desenvolvimento do DBSCAN
+* **feature/model-gmm**: Desenvolvimento do GMM
 
 ### Fluxo de Trabalho
 

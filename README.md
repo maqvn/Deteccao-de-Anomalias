@@ -12,7 +12,7 @@ Projeto da disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**.
 
 ---
 
-## 📊 Sobre o Dataset
+## Sobre o Dataset
 
 Utilizaremos o dataset **Credit Card Fraud Detection**, disponível no Kaggle.
 
@@ -28,6 +28,7 @@ Utilizaremos o dataset **Credit Card Fraud Detection**, disponível no Kaggle.
 
 Optamos por este dataset para concentrar o esforço do projeto na **comparação algorítmica** e na **análise de sensibilidade dos modelos**. Como as principais features já passaram por PCA, elas apresentam propriedades estatísticas relevantes — como descorrelação — que favorecem a convergência de modelos como **GMM** e **Autoencoders**. Isso permite uma análise mais profunda das nuances de cada abordagem, reduzindo o impacto de ruídos típicos de dados brutos não estruturados.
 
+---
 
 ## Estrutura do Repositório
 
@@ -94,8 +95,6 @@ Todos os modelos devem ler os dados da pasta `data/processed/`:
 
 * **ids_test.csv**
   IDs correspondentes às linhas de teste (para cruzamento de resultados).
-
----
 
 ### Saída dos modelos
 

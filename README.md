@@ -79,6 +79,7 @@ O projeto adota uma estrutura **modular e paralela**, permitindo que diferentes 
 ### Entrada dos Modelos (`data/processed/`)
 
 * `X_train_processed.csv` — Features normalizadas (sem target e sem ID)
+* `y_train.csv` — Gabarito (0 = Normal, 1 = Anomalia)
 * `X_test_processed.csv` — Mesmo formato do treino
 * `y_test.csv` — Gabarito (0 = Normal, 1 = Anomalia)
 * `ids_test.csv` — Identificadores das amostras de teste

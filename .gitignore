@@ -1,0 +1,9 @@
+data/raw/
+data/processed/
+data/mocks/
+
+notebooks/*.ipynb
+
+venv/
+__pycache__/
+*.DS_Store

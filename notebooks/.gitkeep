@@ -1,0 +1,2 @@
+Este arquivo existe apenas para garantir que a pasta 'outputs' seja versionada pelo Git.
+O Git não rastreia pastas vazias.notebooks/*.ipynb

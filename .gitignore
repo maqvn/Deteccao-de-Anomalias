@@ -1,6 +1,6 @@
-data/raw/*
-data/processed/*
-data/mocks/*
+data/raw/*.csv
+data/processed/*.csv
+data/mocks/*.csv
 
 notebooks/*.ipynb
 

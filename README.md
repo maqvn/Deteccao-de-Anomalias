@@ -165,9 +165,19 @@ pip install -r requirements.txt
 ---
 
 ## Desenvolvimento com Mocks
+<<<<<<< HEAD
 
 Enquanto os dados reais não estiverem prontos:
 
 * Utilize `data/mocks/`.
 * Os arquivos possuem **mesma estrutura e tipos** dos dados reais.
 * O código deve funcionar alterando apenas o caminho de leitura.
+=======
+
+Enquanto os dados reais não estiverem prontos:
+
+* Utilize `data/mocks/`.
+* Os arquivos possuem **mesma estrutura e tipos** dos dados reais.
+* O código deve funcionar alterando apenas o caminho de leitura.
+
+>>>>>>> 161f03f104f46d1eb4c5c6be668e21e9c921313e

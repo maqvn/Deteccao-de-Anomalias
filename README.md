@@ -1,10 +1,10 @@
-# 🕵️ Detecção de Anomalias (Projeto AMCD)
+# Detecção de Anomalias (Projeto AMCD)
 
-Este repositório contém o código fonte e os experimentos para o projeto da disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**.
+Projeto da disciplina de **Aprendizado de Máquina e Ciência de Dados (AMCD)**.
 
 **Objetivo:** Implementar e comparar três abordagens distintas (**Deep Learning**, **Densidade** e **Probabilística**) para a detecção de anomalias/fraudes em um conjunto de dados desbalanceado.
 
-## 📌 Modelos Implementados
+## Modelos Implementados
 
 1. **Autoencoder** — Abordagem de Reconstrução
 2. **DBSCAN** — Abordagem de Densidade
@@ -12,9 +12,26 @@ Este repositório contém o código fonte e os experimentos para o projeto da di
 
 ---
 
-## 📂 Estrutura do Repositório
+## 📊 Sobre o Dataset
 
-Mantemos uma organização estrita para separar dados brutos, código de exploração (notebooks) e código de produção (`src`).
+Utilizaremos o dataset **Credit Card Fraud Detection**, disponível no Kaggle.
+
+### Características
+
+- **Conteúdo:** Transações de cartões de crédito de clientes europeus em setembro de 2013.
+- **Volume:** 284.807 transações.
+- **Desbalanceamento:** Apenas 492 fraudes (0,172%). Dataset altamente desbalanceado, com classe positiva rara.
+- **Privacidade:** As features `V1`, `V2`, ..., `V28` são o resultado de uma transformação **PCA (Principal Component Analysis)**, aplicada para proteger a identidade dos usuários.
+- **Features Originais:** Apenas `Time` (segundos desde a primeira transação) e `Amount` (valor da transação) não foram transformadas.
+
+### Justificativa da Escolha
+
+Optamos por este dataset para concentrar o esforço do projeto na **comparação algorítmica** e na **análise de sensibilidade dos modelos**. Como as principais features já passaram por PCA, elas apresentam propriedades estatísticas relevantes — como descorrelação — que favorecem a convergência de modelos como **GMM** e **Autoencoders**. Isso permite uma análise mais profunda das nuances de cada abordagem, reduzindo o impacto de ruídos típicos de dados brutos não estruturados.
+
+
+## Estrutura do Repositório
+
+O método de organização visa separar dados brutos, código de exploração (notebooks) e código de produção (`src`).
 
 ```text
 projeto-anomalia/
@@ -41,28 +58,28 @@ projeto-anomalia/
 
 ---
 
-## 🌿 Branches
+## Branches
 
-* **main**: Produção. Só aceita código via *Pull Request* (PR).
-* **feature/preprocessamento**: Limpeza, EDA e split dos dados.
-* **feature/model-autoencoder**: Desenvolvimento da Rede Neural.
-* **feature/model-dbscan**: Desenvolvimento do DBSCAN e PCA.
-* **feature/model-gmm**: Desenvolvimento do GMM e análise de distribuição.
+* **main**: Produção. atualização exclusivamente via *Pull Request* (PR).
+* **preprocessing**: Limpeza, EDA e split dos dados.
+* **model-autoencoder**: Desenvolvimento da Rede Neural.
+* **model-dbscan**: Desenvolvimento do DBSCAN e PCA.
+* **model-gmm**: Desenvolvimento do GMM e análise de distribuição.
 
-### 🔄 Fluxo de Trabalho
+### Fluxo de Trabalho
 
 1. Crie sua branch a partir da `main`.
 2. Desenvolva e teste no seu notebook.
-3. Exporte o código limpo para a pasta `src/` **ou** garanta que o notebook final rode de ponta a ponta.
+3. Exporte o código limpo para a pasta `src/`.
 4. Abra um *Pull Request* para a `main` ao finalizar.
 
 ---
 
-## 🤝 Contrato de Interface de Dados
+## Contrato de Interface de Dados
 
-Para garantir que o trabalho flua em paralelo, os formatos de entrada e saída são rigidamente definidos.
+Para garantir a paralelização do trabalho, os formatos de entrada e saída são pré-definidos.
 
-### 1️⃣ Entrada (O que os modelos recebem)
+### Entrada dos modelos
 
 Todos os modelos devem ler os dados da pasta `data/processed/`:
 
@@ -80,14 +97,14 @@ Todos os modelos devem ler os dados da pasta `data/processed/`:
 
 ---
 
-### 2️⃣ Saída (O que os modelos entregam)
+### Saída dos modelos
 
 Todo modelo deve salvar suas predições na pasta `outputs/`, seguindo **exatamente** este formato:
 
 * **Nome do arquivo:** `[nome_modelo]_predictions.csv`
   Exemplo: `autoencoder_predictions.csv`
 
-#### 📄 Estrutura do CSV
+#### Estrutura do CSV
 
 | Coluna          | Tipo      | Descrição                                               |
 | --------------- | --------- | ------------------------------------------------------- |
@@ -106,17 +123,17 @@ id,anomaly_score,is_anomaly
 
 ---
 
-## 🚀 Como Executar (Ambiente)
+## Como Executar (Ambiente)
 
 Para garantir compatibilidade, todos devem usar as mesmas versões das bibliotecas.
 
-### 1️⃣ Clone o repositório
+### Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/projeto-anomalia.git
+git clone https://github.com/maqvn/Deteccao-de-Anomalias.git
 ```
 
-### 2️⃣ Crie um ambiente virtual (opcional, mas recomendado)
+### Crie um ambiente virtual (opcional, mas recomendado)
 
 ```bash
 python -m venv venv
@@ -124,7 +141,7 @@ source venv/bin/activate  # Linux / Mac
 venv\Scripts\activate     # Windows
 ```
 
-### 3️⃣ Instale as dependências
+### Instale as dependências
 
 ```bash
 pip install -r requirements.txt
@@ -132,7 +149,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🧪 Desenvolvimento com Mocks
+## Desenvolvimento com Mocks
 
 Enquanto os dados reais não estiverem prontos (limpeza em andamento), utilize os arquivos da pasta `data/mocks/`.
 

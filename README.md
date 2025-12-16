@@ -114,10 +114,11 @@ projeto-anomalia/
 │   ├── processed/            # Dados limpos e normalizados
 │   └── mocks/                # Dados sintéticos para testes
 ├── notebooks/                # Exploração e prototipagem
-│   ├── 01_eda_analise.ipynb
-│   ├── 02_proto_autoencoder.ipynb
-│   ├── 02_proto_dbscan.ipynb
-│   └── 02_proto_gmm.ipynb
+│   ├── _eda_exploratory_data_analysis.ipynb
+│   ├── model_autoencoder.ipynb
+│   ├── model_dbscan.ipynb
+│   ├── model_gmm.ipynb
+│   └── models_evaluation.ipynb
 ├── src/                      # Código final
 │   ├── preprocessing.py
 │   ├── evaluation.py

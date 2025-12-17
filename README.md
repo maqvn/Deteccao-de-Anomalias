@@ -235,7 +235,7 @@ jupyter notebook notebooks/
 
 ## Desenvolvimento com Mocks
 
-Enquanto os dados reais não estiverem prontos:
+Essa foi uma alternativa usada para paralelizar o desenvolvimento do projeto enquanto os dados reais não estavam prontos:
 * Rode o arquivo **src/generate_mocks.py**
 * Utilize o conjunto de dados resultante em `data/mocks/`.
 * Os arquivos possuem **mesma estrutura e tipos** dos dados reais.

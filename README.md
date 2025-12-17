@@ -152,7 +152,7 @@ projeto-anomalia/
 
 ---
 
-## Execução do Ambiente
+## Preparação do Ambiente
 
 Para garantir compatibilidade, todos devem usar as mesmas versões das bibliotecas.
 
@@ -175,6 +175,58 @@ venv\Scripts\activate     # Windows
 ```bash
 pip install -r requirements.txt
 ```
+
+---
+
+## 🚀 Guia de Execução (Pipeline)
+
+Para reproduzir os resultados do projeto, siga a ordem de execução abaixo. O pipeline foi desenhado para que a saída de uma etapa sirva de entrada para a próxima.
+
+### 1. Preparação dos Dados (Preprocessing)
+
+Esta etapa carrega o dataset bruto, realiza a limpeza, normalização e a separação em treino/teste. Os arquivos processados serão salvos em `data/processed/`.
+
+```bash
+# Certifique-se de que o dataset (creditcard.csv) ou os mocks estejam em data/raw/
+python src/preprocessing.py
+```
+
+### 2. Treinamento e Inferência dos Modelos
+
+Após o pré-processamento, execute os scripts dos modelos. Cada script treina o modelo, gera as predições no conjunto de teste e salva os resultados (CSVs e gráficos) na pasta `outputs/.`
+
+**Autoencoder (Reconstrução):**
+
+```bash```
+`python src/models/autoencoder.py`
+
+
+**Gaussian Mixture Models (Probabilístico):**
+
+```Bash```
+`python src/models/gmm.py`
+
+**DBSCAN (Densidade):**
+
+```Bash```
+
+`python src/models/dbscan.py`
+
+>    Nota: É possível configurar dentro de cada arquivo (variável RUN_TUNING) se deseja rodar a busca de hiperparâmetros (Grid Search) ou a execução rápida com os melhores parâmetros já fixados.
+
+### 3. Avaliação Comparativa
+
+Após gerar as predições de todos os modelos, execute o script de avaliação para gerar as métricas finais e comparações.
+Bash
+
+`python src/evaluation.py`
+
+### 4. Análise Exploratória (Opcional)
+
+Os notebooks presentes na pasta notebooks/ (como o EDA) servem para análise visual e estudos preliminares. Eles não são estritamente necessários para rodar o pipeline de produção, mas são recomendados para o entendimento dos dados.
+Bash
+
+`jupyter notebook notebooks/`
 
 ---
 

@@ -213,7 +213,7 @@ python src/models/gmm.py
 python src/models/dbscan.py
 ```
 
->    Nota: É possível configurar dentro de cada arquivo (variável RUN_TUNING) se deseja rodar a busca de hiperparâmetros (Grid Search) ou a execução rápida com os melhores parâmetros já fixados.
+>    Nota: É possível configurar dentro dos arquivo gmm.py e autoencoder.py (variável RUN_TUNING) se deseja rodar a busca de hiperparâmetros (Grid Search) ou a execução rápida com os melhores parâmetros já fixados.
 
 ### 3. Avaliação Comparativa
 

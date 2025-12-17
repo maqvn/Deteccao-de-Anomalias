@@ -187,7 +187,7 @@ Para reproduzir os resultados do projeto, siga a ordem de execução abaixo. O p
 Esta etapa carrega o dataset bruto, realiza a limpeza, normalização e a separação em treino/teste. Os arquivos processados serão salvos em `data/processed/`.
 
 ```bash
-# Certifique-se de que o dataset (creditcard.csv) ou os mocks estejam em data/raw/
+# Certifique-se de que o dataset (creditcard.csv) estejam em data/raw/
 python src/preprocessing.py
 ```
 
@@ -197,20 +197,21 @@ Após o pré-processamento, execute os scripts dos modelos. Cada script treina o
 
 **Autoencoder (Reconstrução):**
 
-```bash```
-`python src/models/autoencoder.py`
-
+```bash
+python src/models/autoencoder.py
+```
 
 **Gaussian Mixture Models (Probabilístico):**
 
-```Bash```
-`python src/models/gmm.py`
+```Bash
+python src/models/gmm.py
+```
 
 **DBSCAN (Densidade):**
 
-```Bash```
-
-`python src/models/dbscan.py`
+```Bash
+python src/models/dbscan.py
+```
 
 >    Nota: É possível configurar dentro de cada arquivo (variável RUN_TUNING) se deseja rodar a busca de hiperparâmetros (Grid Search) ou a execução rápida com os melhores parâmetros já fixados.
 

@@ -178,7 +178,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 Guia de Execução (Pipeline)
+## Guia de Execução (Pipeline)
 
 Para reproduzir os resultados do projeto, siga a ordem de execução abaixo. O pipeline foi desenhado para que a saída de uma etapa sirva de entrada para a próxima.
 

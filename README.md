@@ -218,16 +218,18 @@ python src/models/dbscan.py
 ### 3. Avaliação Comparativa
 
 Após gerar as predições de todos os modelos, execute o script de avaliação para gerar as métricas finais e comparações.
-Bash
 
-`python src/evaluation.py`
+```Bash
+python src/evaluation.py
+```
 
 ### 4. Análise Exploratória (Opcional)
 
 Os notebooks presentes na pasta notebooks/ (como o EDA) servem para análise visual e estudos preliminares. Eles não são estritamente necessários para rodar o pipeline de produção, mas são recomendados para o entendimento dos dados.
+```
 Bash
-
-`jupyter notebook notebooks/`
+jupyter notebook notebooks/
+```
 
 ---
 
